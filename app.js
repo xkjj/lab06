@@ -15,8 +15,22 @@ app.get("/", async(req, res) => {
 
     //let firstuni = unis[0];
 
-
     res.render("index", {uni_data: unis});
+});
+
+app.get("/", async(req, res) => {
+    let url = `http://universities.hipolabs.com/search?country=denmark`;
+
+    let response = await fetch(url); // use the fetch method
+
+    let unis = await response.json(); // read response body and parse as JSON
+    let countries = await response.json();
+
+    //console.table(unis[0].name);
+
+    //let firstuni = unis[0];
+
+    res.render("index", {uni_data: unis, uni_data: countries});
 });
 
 app.listen(3000, () => {
